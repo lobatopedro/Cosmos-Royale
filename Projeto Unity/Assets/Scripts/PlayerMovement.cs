@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
     private Joystick joystick;
     private Rigidbody spaceCraft;
 
-    public int velocity = 50;
-    public float maxSpeed = 50;
+    public int velocity = 500;
+    public float maxSpeed = 500;
 
     void Start()
     {
