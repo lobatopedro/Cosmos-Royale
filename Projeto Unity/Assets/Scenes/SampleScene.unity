@@ -804,7 +804,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.3563128e-19, y: 915154, z: 0.0000000023316185, w: 6.4096906e-10}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -5740,6 +5740,23 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 558042068}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1250366739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250366736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb691594464106847a14d8b32cbac470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCamera: {fileID: 666113660}
+  boarda_superior: 430
+  boarda_inferior: -600
+  boarda_direita: -140
+  boarda_esquerda: -740
 --- !u!136 &1250366740
 CapsuleCollider:
   m_ObjectHideFlags: 0
