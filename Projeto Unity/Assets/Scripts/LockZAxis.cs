@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class LockZAxis : MonoBehaviour
 {
+    public float amount;
     private Vector3 tempPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,7 @@ public class LockZAxis : MonoBehaviour
     void Update()
     {
         tempPos = transform.position;
-        tempPos.z = 0;
+        tempPos.z = amount;
         transform.position = tempPos;
     }
 }
