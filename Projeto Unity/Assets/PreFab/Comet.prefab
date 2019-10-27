@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 5567650055477223215}
   - component: {fileID: 5567650055477223208}
   - component: {fileID: 982002634693470854}
-  - component: {fileID: 575222354747560955}
+  - component: {fileID: 6326318147219494518}
+  - component: {fileID: 1435312626004826660}
   m_Layer: 0
   m_Name: Comet
   m_TagString: Untagged
@@ -31,8 +32,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496185810635612073}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 434.16998, y: 357.86, z: -0.7}
-  m_LocalScale: {x: 1951.6992, y: 1951.6992, z: 1951.6992}
+  m_LocalPosition: {x: 432.29, y: 356.18, z: -0.7}
+  m_LocalScale: {x: 3911.791, y: 3911.791, z: 3911.791}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -144,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 184
---- !u!114 &575222354747560955
+--- !u!114 &6326318147219494518
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,7 +154,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 4496185810635612073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e5808ba02ec235449a0c634df552866, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a34a6c53e72ea249a7d06461b3886d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 350
+--- !u!114 &1435312626004826660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496185810635612073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7db849e1d00064384dd5c42acd90e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

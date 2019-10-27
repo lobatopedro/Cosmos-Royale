@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class deployAsteroids : MonoBehaviour
+public class deployEnemy : MonoBehaviour
 {
     public GameObject asteroidPrefab;
+    public GameObject cometPrefab;
     public int wave;
     public float respawnTime;
-
-    //public GameObject cometaPrefab;
+    private float respawnProbability;
+   
+    
     //public GameObject meteoroPrefab;
 
     private float asteroidCounter;
@@ -26,10 +28,16 @@ public class deployAsteroids : MonoBehaviour
     }
     private void spawnAsteroid()
     {
-        GameObject a = Instantiate(asteroidPrefab) as GameObject;
-        a.transform.position = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), screenBounds.y * 2, 184);
+        GameObject asteroid = Instantiate(asteroidPrefab) as GameObject;
+        asteroid.transform.position = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), screenBounds.y * 2, 184);
         asteroidCounter = asteroidCounter + 1;
         Debug.Log(asteroidCounter);
+    }
+
+    private void spawnComet()
+    {
+        GameObject comet = Instantiate(cometPrefab) as GameObject;
+        comet.transform.position = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), screenBounds.y * 2, 184);
     }
 
 
@@ -40,9 +48,25 @@ public class deployAsteroids : MonoBehaviour
         {
 
             respawnTime = Random.Range(1.5f, 3);
+            respawnProbability = Random.Range(1, 100);
             yield return new WaitForSeconds(respawnTime);
-            spawnAsteroid();
 
+            if (respawnProbability <= 70)
+            {
+                spawnAsteroid();
+            }
+            else if (respawnProbability > 70 && respawnProbability < 95)
+            {
+                spawnComet();
+            }
+            else if (respawnProbability >= 95)
+            {
+                spawnComet();
+            }
+            
+            
+            
+            //Asteroid Rain
             if (asteroidCounter == 20)
             {
                 for (int i = 0; i <= wave; i++)
@@ -52,6 +76,7 @@ public class deployAsteroids : MonoBehaviour
                 }
                 wave = wave + 2;
                 asteroidCounter = 0;
+                yield return new WaitForSeconds(5.0f);
             }
 
 
