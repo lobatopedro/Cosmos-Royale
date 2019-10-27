@@ -91,7 +91,7 @@ public class deployEnemy : MonoBehaviour
             }
 
             //Comet Rain
-            if (cometCounter == 5)
+            if (cometCounter == 30)
             {
                 for (int i = 0; i <= 5; i++)
                 {
