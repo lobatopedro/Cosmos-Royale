@@ -2,57 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireEffect : MonoBehaviour
+public class ControlFireSound : MonoBehaviour
 {
+    private AudioSource controleAudio;
+    private Joystick joystick;
+
     public float tamanhoMinimo;
     public float tamanhoNormal;
     public float tamanhoMaximo;
-    public ParticleSystem fogo;
 
     private float valorAtual;
-    private ParticleSystem.MainModule pMain;
-    private Joystick joystick;
 
     // Start is called before the first frame update
     void Start()
     {
         valorAtual = tamanhoNormal;
-        fogo = GetComponent<ParticleSystem>();
+        controleAudio = GetComponent<AudioSource>();
         joystick = FindObjectOfType<Joystick>();
-
-        pMain = fogo.main;
     }
 
     // Update is called once per frame
     void Update()
     {
         verificaAceleracao();
-        pMain.startSize = new ParticleSystem.MinMaxCurve(valorAtual, valorAtual);
+        controleAudio.volume = valorAtual;
+
     }
 
     public void verificaAceleracao()
     {
         if (joystick.Vertical > 0 && valorAtual < tamanhoMaximo) //Aumentar Fogo
         {
-            valorAtual++;
+            valorAtual += 0.0010f;
         }
 
         if (joystick.Vertical < 0 && valorAtual > tamanhoMinimo) //Diminuir Fogo
         {
-            valorAtual--;
+            valorAtual -= 0.0010f; ;
         }
 
         if (joystick.Vertical == 0 && valorAtual > tamanhoNormal)
         {
-            valorAtual--;
+            valorAtual -= 0.0010f; ;
         }
         else
-        if(joystick.Vertical == 0 && valorAtual < tamanhoNormal)
+        if (joystick.Vertical == 0 && valorAtual < tamanhoNormal)
         {
-            valorAtual++;
+            valorAtual += 0.0010f; ;
         }
     }
-
-
-
 }
