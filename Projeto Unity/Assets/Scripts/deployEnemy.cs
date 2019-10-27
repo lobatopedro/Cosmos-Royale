@@ -6,6 +6,8 @@ public class deployEnemy : MonoBehaviour
 {
     public GameObject asteroidPrefab;
     public GameObject cometPrefab;
+    public GameObject meteorPrefab;
+
     public int wave;
     public float respawnTime;
     private float respawnProbability;
@@ -40,6 +42,11 @@ public class deployEnemy : MonoBehaviour
         comet.transform.position = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), screenBounds.y * 2, 184);
     }
 
+    private void spawnMeteor()
+    {
+        GameObject meteor = Instantiate(meteorPrefab) as GameObject;
+        meteor.transform.position = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), screenBounds.y * 1.5f, 184);
+    }
 
     IEnumerator asteroidWave()
     {
@@ -61,7 +68,7 @@ public class deployEnemy : MonoBehaviour
             }
             else if (respawnProbability >= 95)
             {
-                spawnComet();
+                spawnMeteor();
             }
             
             

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class asteroid : MonoBehaviour
+public class Meteor : MonoBehaviour
 {
-    public float speed = 350.0f;
+    private float speed = 175.0f;
     private Rigidbody rb;
     private Vector2 screenBounds;
 
