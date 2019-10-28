@@ -7,6 +7,7 @@ public class deployEnemy : MonoBehaviour
     public GameObject asteroidPrefab;
     public GameObject cometPrefab;
     public GameObject meteorPrefab;
+    public GameObject warningPrefab;
 
     private int asteroidWaves;
     private int cometWaves;
@@ -16,7 +17,6 @@ public class deployEnemy : MonoBehaviour
     private float cometCounter;
     private float asteroidCounter;
     private Vector2 screenBounds;
-
 
 
     // Use this for initialization
@@ -31,19 +31,25 @@ public class deployEnemy : MonoBehaviour
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         StartCoroutine(enemyWave());
     }
+
     private void spawnAsteroid()
     {
         GameObject asteroid = Instantiate(asteroidPrefab) as GameObject;
         asteroid.transform.position = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), screenBounds.y * 2, 184);
+
         asteroidCounter = asteroidCounter + 1;
         Debug.Log(asteroidCounter);
     }
 
     private void spawnComet()
     {
+        Vector3 vector3 = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), screenBounds.y * 2.5f, 184);
+
+        GameObject warning = Instantiate(warningPrefab) as GameObject;
         GameObject comet = Instantiate(cometPrefab) as GameObject;
-        comet.transform.position = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), screenBounds.y * 2, 184);
-        cometCounter = cometCounter + 1;
+        comet.transform.position = vector3;
+        warning.transform.position = new Vector3(vector3.x, 520, 184);
+        cometCounter += 1;
     }
 
     private void spawnMeteor()
@@ -85,7 +91,7 @@ public class deployEnemy : MonoBehaviour
                     yield return new WaitForSeconds(0.3f);
                     spawnAsteroid();
                 }
-                asteroidWaves = asteroidWaves + 2;
+                asteroidWaves += 2;
                 asteroidCounter = 0;
                 yield return new WaitForSeconds(3.0f);
             }
@@ -98,7 +104,7 @@ public class deployEnemy : MonoBehaviour
                     yield return new WaitForSeconds(0.3f);
                     spawnComet();
                 }
-                cometWaves = cometWaves + 1;
+                cometWaves += 1;
                 cometCounter = 0;
                 yield return new WaitForSeconds(3.0f);
             }
