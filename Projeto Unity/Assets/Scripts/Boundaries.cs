@@ -8,10 +8,6 @@ public class Boundaries : MonoBehaviour
     private Vector2 screenBounds;
     private float objectWidth;
     private float objectHeight;
-    public float boarda_superior = 430;
-    public float boarda_inferior = -600;
-    public float boarda_direita = -180;
-    public float boarda_esquerda = -700;
 
 
     // Use this for initialization
@@ -26,12 +22,9 @@ public class Boundaries : MonoBehaviour
     void LateUpdate()
     {
         Vector3 viewPos = transform.position;
-        //viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x * -1 + objectWidth, screenBounds.x - objectWidth);
-        //viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1 + objectHeight, screenBounds.y - objectHeight);
-
-        viewPos.x = Mathf.Clamp(viewPos.x, boarda_esquerda, boarda_direita);
-        viewPos.y = Mathf.Clamp(viewPos.y, boarda_inferior, boarda_superior);
+        viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x * -1 + objectWidth, screenBounds.x - objectWidth);
+        viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1 + objectHeight, screenBounds.y - objectHeight);
 
         transform.position = viewPos;
     }
-}
+} 
