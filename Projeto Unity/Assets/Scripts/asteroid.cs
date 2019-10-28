@@ -7,13 +7,14 @@ public class asteroid : MonoBehaviour
     public float speed = 350.0f;
     private Rigidbody rb;
     private Vector2 screenBounds;
-
+    private float x_axis;
 
     // Use this for initialization
     void Start()
     {
+        x_axis = Random.Range(-40, 40);
         rb = this.GetComponent<Rigidbody>();
-        rb.velocity = new Vector3(0, -speed, 0);
+        rb.velocity = new Vector3(x_axis, -speed, 0);
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
 
     }
@@ -25,5 +26,6 @@ public class asteroid : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
     }
 }

@@ -16,7 +16,7 @@ public class deployEnemy : MonoBehaviour
     private float cometCounter;
     private float asteroidCounter;
     private Vector2 screenBounds;
-    
+
 
 
     // Use this for initialization
@@ -58,7 +58,7 @@ public class deployEnemy : MonoBehaviour
         while (true)
         {
 
-            respawnTime = Random.Range(1.5f, 3);
+            respawnTime = Random.Range(1, 3);
             respawnProbability = Random.Range(1, 100);
             yield return new WaitForSeconds(respawnTime);
 
@@ -74,11 +74,11 @@ public class deployEnemy : MonoBehaviour
             {
                 spawnMeteor();
                 yield return new WaitForSeconds(3.0f);
-            }           
-            
-            
+            }
+
+
             //Asteroid Rain
-            if (asteroidCounter == 20)
+            if (asteroidCounter == 15)
             {
                 for (int i = 0; i <= asteroidWaves; i++)
                 {
@@ -87,11 +87,11 @@ public class deployEnemy : MonoBehaviour
                 }
                 asteroidWaves = asteroidWaves + 2;
                 asteroidCounter = 0;
-                yield return new WaitForSeconds(5.0f);
+                yield return new WaitForSeconds(3.0f);
             }
 
             //Comet Rain
-            if (cometCounter == 30)
+            if (cometCounter == 15)
             {
                 for (int i = 0; i <= 5; i++)
                 {
@@ -100,7 +100,7 @@ public class deployEnemy : MonoBehaviour
                 }
                 cometWaves = cometWaves + 1;
                 cometCounter = 0;
-                yield return new WaitForSeconds(5.0f);
+                yield return new WaitForSeconds(3.0f);
             }
 
         }
