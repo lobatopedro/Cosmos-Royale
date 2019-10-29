@@ -258,6 +258,10 @@ MonoBehaviour:
     type: 3}
   warningPrefab: {fileID: 7621734708455716833, guid: ffd4c6cb73116d444b4f16a60fe3c4c4,
     type: 3}
+  warningTextAsteroidPrefab: {fileID: 476946037193702267, guid: b6cdd7eef03b6de4db002bc7644c30b4,
+    type: 3}
+  warningTextCometPrefab: {fileID: 5867020114436843860, guid: 75a30414c13d05044b50e9d2c3312aac,
+    type: 3}
 --- !u!114 &666113663
 MonoBehaviour:
   m_ObjectHideFlags: 0

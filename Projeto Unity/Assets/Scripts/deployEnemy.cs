@@ -8,7 +8,9 @@ public class deployEnemy : MonoBehaviour
     public GameObject cometPrefab;
     public GameObject meteorPrefab;
     public GameObject warningPrefab;
-
+    public GameObject warningTextAsteroidPrefab;
+    public GameObject warningTextCometPrefab;
+ 
     private int asteroidWaves;
     private int cometWaves;
     private float respawnTime;
@@ -86,6 +88,9 @@ public class deployEnemy : MonoBehaviour
             //Asteroid Rain
             if (asteroidCounter == 15)
             {
+                GameObject warning = Instantiate(warningTextAsteroidPrefab) as GameObject;
+                yield return new WaitForSeconds(1.0f);
+
                 for (int i = 0; i <= asteroidWaves; i++)
                 {
                     yield return new WaitForSeconds(0.3f);
@@ -97,8 +102,12 @@ public class deployEnemy : MonoBehaviour
             }
 
             //Comet Rain
-            if (cometCounter == 15)
+            if (cometCounter == 7)
             {
+
+                GameObject warning = Instantiate(warningTextCometPrefab) as GameObject;
+                yield return new WaitForSeconds(1.0f);
+
                 for (int i = 0; i <= 5; i++)
                 {
                     yield return new WaitForSeconds(0.3f);
