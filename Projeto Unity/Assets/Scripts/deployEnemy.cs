@@ -66,7 +66,7 @@ public class deployEnemy : MonoBehaviour
         while (true)
         {
 
-            respawnTime = Random.Range(1, 3);
+            respawnTime = Random.Range(0.5f, 3);
             respawnProbability = Random.Range(1, 100);
             yield return new WaitForSeconds(respawnTime);
 
