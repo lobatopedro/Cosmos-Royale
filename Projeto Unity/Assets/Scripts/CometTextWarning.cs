@@ -17,7 +17,7 @@ public class CometTextWarning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        vector3 = new Vector3(-75, 100, 184);
+        vector3 = new Vector3(0, 0, 0);
         transform.position = Vector3.Lerp(transform.position, vector3, 0.1f);
 
     }
