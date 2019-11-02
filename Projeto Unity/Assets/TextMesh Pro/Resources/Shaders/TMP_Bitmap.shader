@@ -11,7 +11,10 @@ Properties {
 	_MaskSoftnessY	("Mask SoftnessY", float) = 0
 
 	_ClipRect("Clip Rect", vector) = (-32767, -32767, 32767, 32767)
+<<<<<<< Updated upstream
 	_Padding		("Padding", float) = 0
+=======
+>>>>>>> Stashed changes
 
 	_StencilComp("Stencil Comparison", Float) = 8
 	_Stencil("Stencil ID", Float) = 0
@@ -90,9 +93,15 @@ SubShader{
 			return output * 0.001953125;
 		}
 
+<<<<<<< Updated upstream
 		v2f vert (appdata_t i)
 		{
 			float4 vert = i.vertex;
+=======
+		v2f vert (appdata_t v)
+		{
+			float4 vert = v.vertex;
+>>>>>>> Stashed changes
 			vert.x += _VertexOffsetX;
 			vert.y += _VertexOffsetY;
 
@@ -100,6 +109,7 @@ SubShader{
 
 			float4 vPosition = UnityPixelSnap(UnityObjectToClipPos(vert));
 
+<<<<<<< Updated upstream
 			fixed4 faceColor = i.color;
 			faceColor *= _FaceColor;
 
@@ -108,11 +118,22 @@ SubShader{
 			o.color = faceColor;
 			o.texcoord0 = i.texcoord0;
 			o.texcoord1 = TRANSFORM_TEX(UnpackUV(i.texcoord1), _FaceTex);
+=======
+			fixed4 faceColor = v.color;
+			faceColor *= _FaceColor;
+
+			v2f OUT;
+			OUT.vertex = vPosition;
+			OUT.color = faceColor;
+			OUT.texcoord0 = v.texcoord0;
+			OUT.texcoord1 = TRANSFORM_TEX(UnpackUV(v.texcoord1), _FaceTex);
+>>>>>>> Stashed changes
 			float2 pixelSize = vPosition.w;
 			pixelSize /= abs(float2(_ScreenParams.x * UNITY_MATRIX_P[0][0], _ScreenParams.y * UNITY_MATRIX_P[1][1]));
 
 			// Clamp _ClipRect to 16bit.
 			float4 clampedRect = clamp(_ClipRect, -2e10, 2e10);
+<<<<<<< Updated upstream
 			o.mask = float4(vert.xy * 2 - clampedRect.xy - clampedRect.zw, 0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + pixelSize.xy));
 			
 			return o;
@@ -136,6 +157,29 @@ SubShader{
 			#endif
 
 			return c;
+=======
+			OUT.mask = float4(vert.xy * 2 - clampedRect.xy - clampedRect.zw, 0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + pixelSize.xy));
+			
+			return OUT;
+		}
+
+		fixed4 frag (v2f IN) : SV_Target
+		{
+			fixed4 color = tex2D(_MainTex, IN.texcoord0);
+			color = fixed4 (tex2D(_FaceTex, IN.texcoord1).rgb * IN.color.rgb, IN.color.a * color.a);
+
+			// Alternative implementation to UnityGet2DClipping with support for softness.
+			#if UNITY_UI_CLIP_RECT
+				half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(IN.mask.xy)) * IN.mask.zw);
+				color *= m.x * m.y;
+			#endif
+
+			#if UNITY_UI_ALPHACLIP
+				clip(color.a - 0.001);
+			#endif
+
+			return color;
+>>>>>>> Stashed changes
 		}
 		ENDCG
 	}

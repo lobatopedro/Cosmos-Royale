@@ -64,6 +64,10 @@ Properties {
 	_ScaleX				("Scale X", float) = 1.0
 	_ScaleY				("Scale Y", float) = 1.0
 	_PerspectiveFilter	("Perspective Correction", Range(0, 1)) = 0.875
+<<<<<<< Updated upstream
+=======
+	_Sharpness			("Sharpness", Range(-1,1)) = 0
+>>>>>>> Stashed changes
 
 	_VertexOffsetX		("Vertex OffsetX", float) = 0
 	_VertexOffsetY		("Vertex OffsetY", float) = 0
@@ -120,13 +124,20 @@ SubShader {
 		#pragma multi_compile __ UNITY_UI_CLIP_RECT
 		#pragma multi_compile __ UNITY_UI_ALPHACLIP
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 		#include "UnityCG.cginc"
 		#include "UnityUI.cginc"
 		#include "TMPro_Properties.cginc"
 		#include "TMPro.cginc"
 
 		struct vertex_t {
+<<<<<<< Updated upstream
+=======
+			UNITY_VERTEX_INPUT_INSTANCE_ID
+>>>>>>> Stashed changes
 			float4	position		: POSITION;
 			float3	normal			: NORMAL;
 			fixed4	color			: COLOR;
@@ -136,6 +147,11 @@ SubShader {
 
 
 		struct pixel_t {
+<<<<<<< Updated upstream
+=======
+			UNITY_VERTEX_INPUT_INSTANCE_ID
+			UNITY_VERTEX_OUTPUT_STEREO
+>>>>>>> Stashed changes
 			float4	position		: SV_POSITION;
 			fixed4	color			: COLOR;
 			float2	atlas			: TEXCOORD0;		// Atlas
@@ -156,17 +172,35 @@ SubShader {
 
 		pixel_t VertShader(vertex_t input)
 		{
+<<<<<<< Updated upstream
+=======
+			pixel_t output;
+
+			UNITY_INITIALIZE_OUTPUT(pixel_t, output);
+			UNITY_SETUP_INSTANCE_ID(input);
+			UNITY_TRANSFER_INSTANCE_ID(input,output);
+			UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
+
+>>>>>>> Stashed changes
 			float bold = step(input.texcoord1.y, 0);
 
 			float4 vert = input.position;
 			vert.x += _VertexOffsetX;
 			vert.y += _VertexOffsetY;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 			float4 vPosition = UnityObjectToClipPos(vert);
 
 			float2 pixelSize = vPosition.w;
 			pixelSize /= float2(_ScaleX, _ScaleY) * abs(mul((float2x2)UNITY_MATRIX_P, _ScreenParams.xy));
 			float scale = rsqrt(dot(pixelSize, pixelSize));
+<<<<<<< Updated upstream
 			scale *= abs(input.texcoord1.y) * _GradientScale * 1.5;
+=======
+			scale *= abs(input.texcoord1.y) * _GradientScale * (_Sharpness + 1);
+>>>>>>> Stashed changes
 			if (UNITY_MATRIX_P[3][3] == 0) scale = lerp(abs(scale) * (1 - _PerspectiveFilter), scale, abs(dot(UnityObjectToWorldNormal(input.normal.xyz), normalize(WorldSpaceViewDir(vert)))));
 
 			float weight = lerp(_WeightNormal, _WeightBold, bold) / 4.0;
@@ -204,6 +238,7 @@ SubShader {
 			float2 faceUV = TRANSFORM_TEX(textureUV, _FaceTex);
 			float2 outlineUV = TRANSFORM_TEX(textureUV, _OutlineTex);
 
+<<<<<<< Updated upstream
 			pixel_t output = {
 				vPosition,
 				input.color,
@@ -217,6 +252,20 @@ SubShader {
 			#endif
 				float4(faceUV, outlineUV),
 			};
+=======
+			
+			output.position = vPosition;
+			output.color = input.color;
+			output.atlas =	input.texcoord0;
+			output.param =	float4(alphaClip, scale, bias, weight);
+			output.mask = half4(vert.xy * 2 - clampedRect.xy - clampedRect.zw, 0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + pixelSize.xy));
+			output.viewDir =	mul((float3x3)_EnvMatrix, _WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, vert).xyz);
+			#if (UNDERLAY_ON || UNDERLAY_INNER)
+			output.texcoord2 = float4(input.texcoord0 + bOffset, bScale, bBias);
+			output.underlayColor =	underlayColor;
+			#endif
+			output.textures = float4(faceUV, outlineUV);
+>>>>>>> Stashed changes
 
 			return output;
 		}
@@ -224,6 +273,11 @@ SubShader {
 
 		fixed4 PixShader(pixel_t input) : SV_Target
 		{
+<<<<<<< Updated upstream
+=======
+			UNITY_SETUP_INSTANCE_ID(input);
+
+>>>>>>> Stashed changes
 			float c = tex2D(_MainTex, input.atlas).a;
 		
 		#ifndef UNDERLAY_ON
