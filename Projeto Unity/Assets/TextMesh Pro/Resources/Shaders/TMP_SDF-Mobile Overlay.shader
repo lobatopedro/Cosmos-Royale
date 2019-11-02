@@ -34,10 +34,7 @@ Properties {
 	_ScaleX				("Scale X", float) = 1
 	_ScaleY				("Scale Y", float) = 1
 	_PerspectiveFilter	("Perspective Correction", Range(0, 1)) = 0.875
-<<<<<<< Updated upstream
-=======
 	_Sharpness			("Sharpness", Range(-1,1)) = 0
->>>>>>> Stashed changes
 
 	_VertexOffsetX		("Vertex OffsetX", float) = 0
 	_VertexOffsetY		("Vertex OffsetY", float) = 0
@@ -96,10 +93,7 @@ SubShader {
 		#include "TMPro_Properties.cginc"
 
 		struct vertex_t {
-<<<<<<< Updated upstream
-=======
 			UNITY_VERTEX_INPUT_INSTANCE_ID
->>>>>>> Stashed changes
 			float4	vertex			: POSITION;
 			float3	normal			: NORMAL;
 			fixed4	color			: COLOR;
@@ -108,11 +102,8 @@ SubShader {
 		};
 
 		struct pixel_t {
-<<<<<<< Updated upstream
-=======
 			UNITY_VERTEX_INPUT_INSTANCE_ID
 			UNITY_VERTEX_OUTPUT_STEREO
->>>>>>> Stashed changes
 			float4	vertex			: SV_POSITION;
 			fixed4	faceColor		: COLOR;
 			fixed4	outlineColor	: COLOR1;
@@ -128,8 +119,6 @@ SubShader {
 
 		pixel_t VertShader(vertex_t input)
 		{
-<<<<<<< Updated upstream
-=======
 			pixel_t output;
 
 			UNITY_INITIALIZE_OUTPUT(pixel_t, output);
@@ -137,7 +126,6 @@ SubShader {
 			UNITY_TRANSFER_INSTANCE_ID(input, output);
 			UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
 			
->>>>>>> Stashed changes
 			float bold = step(input.texcoord1.y, 0);
 
 			float4 vert = input.vertex;
@@ -149,11 +137,7 @@ SubShader {
 			pixelSize /= float2(_ScaleX, _ScaleY) * abs(mul((float2x2)UNITY_MATRIX_P, _ScreenParams.xy));
 			
 			float scale = rsqrt(dot(pixelSize, pixelSize));
-<<<<<<< Updated upstream
-			scale *= abs(input.texcoord1.y) * _GradientScale * 1.5;
-=======
 			scale *= abs(input.texcoord1.y) * _GradientScale * (_Sharpness + 1);
->>>>>>> Stashed changes
 			if(UNITY_MATRIX_P[3][3] == 0) scale = lerp(abs(scale) * (1 - _PerspectiveFilter), scale, abs(dot(UnityObjectToWorldNormal(input.normal.xyz), normalize(WorldSpaceViewDir(vert)))));
 
 			float weight = lerp(_WeightNormal, _WeightBold, bold) / 4.0;
@@ -179,10 +163,6 @@ SubShader {
 			outlineColor = lerp(faceColor, outlineColor, sqrt(min(1.0, (outline * 2))));
 
 		#if (UNDERLAY_ON | UNDERLAY_INNER)
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 			layerScale /= 1 + ((_UnderlaySoftness * _ScaleRatioC) * layerScale);
 			float layerBias = (.5 - weight) * layerScale - .5 - ((_UnderlayDilate * _ScaleRatioC) * .5 * layerScale);
 
@@ -195,21 +175,6 @@ SubShader {
 			float4 clampedRect = clamp(_ClipRect, -2e10, 2e10);
 			float2 maskUV = (vert.xy - clampedRect.xy) / (clampedRect.zw - clampedRect.xy);
 
-<<<<<<< Updated upstream
-			// Structure for pixel shader
-			pixel_t output = {
-				vPosition,
-				faceColor,
-				outlineColor,
-				float4(input.texcoord0.x, input.texcoord0.y, maskUV.x, maskUV.y),
-				half4(scale, bias - outline, bias + outline, bias),
-				half4(vert.xy * 2 - clampedRect.xy - clampedRect.zw, 0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + pixelSize.xy)),
-			#if (UNDERLAY_ON | UNDERLAY_INNER)
-				float4(input.texcoord0 + layerOffset, input.color.a, 0),
-				half2(layerScale, layerBias),
-			#endif
-			};
-=======
 			// Populate structure for pixel shader
 			output.vertex = vPosition;
 			output.faceColor = faceColor;
@@ -221,7 +186,6 @@ SubShader {
 			output.texcoord1 = float4(input.texcoord0 + layerOffset, input.color.a, 0);
 			output.underlayParam = half2(layerScale, layerBias);
 			#endif
->>>>>>> Stashed changes
 
 			return output;
 		}
@@ -230,11 +194,8 @@ SubShader {
 		// PIXEL SHADER
 		fixed4 PixShader(pixel_t input) : SV_Target
 		{
-<<<<<<< Updated upstream
-=======
 			UNITY_SETUP_INSTANCE_ID(input);
 			
->>>>>>> Stashed changes
 			half d = tex2D(_MainTex, input.texcoord0.xy).a * input.param.x;
 			half4 c = input.faceColor * saturate(d - input.param.w);
 
