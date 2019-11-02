@@ -381,7 +381,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: NaN, y: 4.05e-43, z: 6.8877e-41, w: 0}
+  m_BoundingSphereOverride: {x: 6.54e-43, y: 1.1657236e+11, z: 6.54e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -642,6 +642,49 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1308412471 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6325910201640548507, guid: 3a3dba49636950f4cbb241002626b859,
+    type: 3}
+  m_PrefabInstance: {fileID: 1738642506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1308412480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308412471}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2b1681acb180a439d033de98c069e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &1308412481
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308412471}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 1.9421676
+  m_Center: {x: 0, y: 0.40424886, z: 0}
+--- !u!114 &1308412482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308412471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9baaa96e442a3ad4b8cf8d86aa6d7d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1390780799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1215,6 +1258,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: 8.607205e-18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660440843319951186, guid: 3a3dba49636950f4cbb241002626b859,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2660440843319951189, guid: 3a3dba49636950f4cbb241002626b859,
         type: 3}
