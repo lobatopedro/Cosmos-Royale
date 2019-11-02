@@ -7,12 +7,12 @@ public class ScoreManager : MonoBehaviour
 {
     public float scoreCount;
     public int pointsPerSecond = 1;
-    private TextMeshPro textObject;
+    private TextMeshProUGUI textObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        textObject = GetComponent<TextMeshPro>();
+        textObject = GetComponent<TextMeshProUGUI>();
         scoreCount = 0;
     }
 
