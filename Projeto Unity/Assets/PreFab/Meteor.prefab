@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Meteor
       objectReference: {fileID: 0}
+    - target: {fileID: 2447155408132809626, guid: 50a3bb9fe08ff354cb9b5e01103aebff,
+        type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1706111334438424969, guid: 50a3bb9fe08ff354cb9b5e01103aebff,
         type: 3}
       propertyPath: m_LocalPosition.x

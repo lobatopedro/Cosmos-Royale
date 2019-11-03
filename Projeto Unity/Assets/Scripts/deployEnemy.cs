@@ -40,8 +40,7 @@ public class deployEnemy : MonoBehaviour
         asteroid.transform.position = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), screenBounds.y * 2, 184);
 
         asteroidCounter = asteroidCounter + 1;
-        Debug.Log(asteroidCounter);
-    }
+     }
 
     private void spawnComet()
     {
@@ -53,7 +52,6 @@ public class deployEnemy : MonoBehaviour
         warning.transform.position = new Vector3(vector3.x, 520, 184);
 
         cometCounter += 1;
-        Debug.Log(cometCounter);
     }
 
     private void spawnMeteor()
