@@ -68,7 +68,7 @@ public class deployEnemy : MonoBehaviour
         while (true)
         {
 
-            respawnTime = Random.Range(0.5f, 2.5f);
+            respawnTime = Random.Range(0.5f, 2);
             respawnProbability = Random.Range(1, 101);
             yield return new WaitForSeconds(respawnTime);
 
@@ -101,7 +101,7 @@ public class deployEnemy : MonoBehaviour
                     GameObject warning = Instantiate(warningTextCometPrefab) as GameObject;
                     yield return new WaitForSeconds(1.0f);
 
-                    for (int i = 0; i <= 5; i++)
+                    for (int i = 0; i < cometWaves; i++)
                     {
                         yield return new WaitForSeconds(0.3f);
                         spawnComet();
@@ -118,8 +118,9 @@ public class deployEnemy : MonoBehaviour
             }
             else if (respawnProbability >= 95)
             {
+                yield return new WaitForSeconds(1);
                 spawnMeteor();
-                yield return new WaitForSeconds(3.0f);
+                yield return new WaitForSeconds(3.5f);
             }
 
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
-    private float speed = 175.0f;
+    private float speed = 200.0f;
     private Rigidbody rb;
     private Vector2 screenBounds;
 

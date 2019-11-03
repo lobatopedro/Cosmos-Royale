@@ -256,9 +256,12 @@ MonoBehaviour:
     type: 3}
   meteorPrefab: {fileID: 4050597718582617985, guid: 4b7af630bde2524439edd3c7066ab204,
     type: 3}
-  warningPrefab: {fileID: 0}
-  warningTextAsteroidPrefab: {fileID: 0}
-  warningTextCometPrefab: {fileID: 0}
+  warningPrefab: {fileID: 5776994009024613121, guid: d71a101fe64dd2c4c8f76b46d2f8bff9,
+    type: 3}
+  warningTextAsteroidPrefab: {fileID: 5068238723500809315, guid: ebec879abfd93dc4f81dd5f754d56ef4,
+    type: 3}
+  warningTextCometPrefab: {fileID: 5068238723500809315, guid: ebec879abfd93dc4f81dd5f754d56ef4,
+    type: 3}
 --- !u!114 &666113663
 MonoBehaviour:
   m_ObjectHideFlags: 0
