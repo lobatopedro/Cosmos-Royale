@@ -6,8 +6,9 @@ public class PowerUp : MonoBehaviour
 {
     
     public float multiplier = 1.7f;
-    public float duration = 4f;
+    public float duration = 15f;
     private bool onEffect = true;
+    private int random;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,13 +27,32 @@ public class PowerUp : MonoBehaviour
 
     IEnumerator Pickup(Collider player)
     {
-       
-        player.transform.localScale *= multiplier;    
-       
+        random = Random.Range(0, 4);
+        if(random == 0)
+        {
+            player.transform.localScale *= multiplier;
+            yield return new WaitForSecondsRealtime(duration);
+            player.transform.localScale /= multiplier;
+        }
+        if (random == 1)
+        {
+            player.transform.localScale /= multiplier;
+            yield return new WaitForSecondsRealtime(duration);
+            player.transform.localScale *= multiplier;
+        }
+        if (random == 2)
+        {
+            player.transform.GetComponent<PlayerMovement>().velocity *= multiplier;
+            yield return new WaitForSecondsRealtime(duration);
+            player.transform.GetComponent<PlayerMovement>().velocity /= multiplier;
+        }
+        if (random == 3)
+        {
+            player.transform.GetComponent<PlayerMovement>().velocity /= multiplier;
+            yield return new WaitForSecondsRealtime(duration);
+            player.transform.GetComponent<PlayerMovement>().velocity *= multiplier;
+        }
 
-        yield return new WaitForSecondsRealtime(duration);
-      
-        player.transform.localScale /= multiplier;
         Destroy(gameObject);
 
     }
