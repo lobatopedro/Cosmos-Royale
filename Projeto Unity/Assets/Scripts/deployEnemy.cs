@@ -10,11 +10,13 @@ public class deployEnemy : MonoBehaviour
     public GameObject warningPrefab;
     public GameObject warningTextAsteroidPrefab;
     public GameObject warningTextCometPrefab;
+    public GameObject powerUpPrefab;
 
     private int asteroidWaves;
     private int cometWaves;
     private float respawnTime;
     private float respawnProbability;
+    private float powerUpRespawnProbalility;
 
     private float cometCounter;
     private float asteroidCounter;
@@ -60,15 +62,29 @@ public class deployEnemy : MonoBehaviour
         meteor.transform.position = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), screenBounds.y * 1.5f, 184);
     }
 
+    public void spawnPowerUp()
+    {
+        GameObject powerUp = Instantiate(powerUpPrefab) as GameObject;
+        powerUp.transform.position = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), screenBounds.y * 1.5f, 184);
+    }
+
     IEnumerator enemyWave()
     {
 
         while (true)
         {
 
-            respawnTime = Random.Range(0.5f, 2);
+            respawnTime = Random.Range(0.3f, 1.2f);
             respawnProbability = Random.Range(1, 101);
             yield return new WaitForSeconds(respawnTime);
+
+            powerUpRespawnProbalility = Random.Range(1, 101);
+
+            if (powerUpRespawnProbalility <= 3)
+            {
+                spawnPowerUp();
+            }
+
 
             if (respawnProbability <= 65)
             {
@@ -84,7 +100,7 @@ public class deployEnemy : MonoBehaviour
                     }
                     asteroidWaves += 2;
                     asteroidCounter = 0;
-                    yield return new WaitForSeconds(3.0f);
+                    yield return new WaitForSeconds(1.0f);
                 }
                 else
                 {
@@ -106,7 +122,7 @@ public class deployEnemy : MonoBehaviour
                     }
                     cometWaves += 1;
                     cometCounter = 0;
-                    yield return new WaitForSeconds(3.0f);
+                    yield return new WaitForSeconds(1.0f);
                 }
                 else
                 {

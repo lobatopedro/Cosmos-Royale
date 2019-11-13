@@ -262,6 +262,8 @@ MonoBehaviour:
     type: 3}
   warningTextCometPrefab: {fileID: 5068238723500809315, guid: ebec879abfd93dc4f81dd5f754d56ef4,
     type: 3}
+  powerUpPrefab: {fileID: 8964763657777075862, guid: 2008eb9020557b44db98820fbe1287c9,
+    type: 3}
 --- !u!114 &666113663
 MonoBehaviour:
   m_ObjectHideFlags: 0

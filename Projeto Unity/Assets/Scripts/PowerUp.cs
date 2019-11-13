@@ -6,7 +6,7 @@ public class PowerUp : MonoBehaviour
 {
     
     public float multiplier = 1.7f;
-    public float duration = 15f;
+    private float duration;
     private bool onEffect = true;
     private int random;
 
@@ -27,6 +27,9 @@ public class PowerUp : MonoBehaviour
 
     IEnumerator Pickup(Collider player)
     {
+
+        duration = Random.Range(8.0f, 9.0f);
+
         random = Random.Range(0, 4);
         if(random == 0)
         {
